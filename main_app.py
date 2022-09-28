@@ -45,7 +45,7 @@ app.config["DEBUG"] = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
  
 # Define secret key to enable session
-#app.secret_key = 'This is your secret key to utilize session in Flask'
+app.secret_key = 'This is your secret key to utilize session in Flask'
  
  
 @app.route('/')
