@@ -39,6 +39,7 @@ UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'uploads/')
 ALLOWED_EXTENSIONS = {'csv'}
  
 app = Flask(__name__, template_folder='templates', static_folder='static')
+app.config["DEBUG"] = True
 
 # Configure upload file path flask
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
