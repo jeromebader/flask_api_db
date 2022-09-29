@@ -242,4 +242,4 @@ def retrain():
 
 
 # RUN MAIN
-app.run(debug = True)
+#app.run(debug = True)

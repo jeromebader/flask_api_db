@@ -10,9 +10,10 @@ Simple demo Application for API, SQL used with Machine Learning Scikit-Learn Lib
 /ingest_data   [POST]
 
 Receives values in $ for the estimators:
-tv (float)
-radio(float
-newspaper (float)
+tv (float), mandatory
+radio(float, mandatory
+newspaper (float) , mandatory
+sales (float), optional
 
 Example:
 https://jeroba.pythonanywhere.com/ingest_data?tv=100&radio=200&newspaper=400
@@ -21,9 +22,9 @@ or send
 JSON
 Example:
 {
-"tv": "400",
-"radio" : "300",
-"newspaper" : "600"
+"tv": 400,
+"radio" : 300,
+"newspaper" : 600
 }
 
 /predict  [GET,POST]
