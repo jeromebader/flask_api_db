@@ -6,7 +6,7 @@ dname = os.path.dirname(abspath)
 os.chdir(dname)
 print (dname)
 
-con = sqlite3.connect("advertising_sales.db") # change to 'sqlite:///your_filename.db'
+con = sqlite3.connect("./data/advertising_sales.db") # change to 'sqlite:///your_filename.db'
 cur = con.cursor()
 cur.execute('CREATE TABLE estimators (id INTEGER, TV FLOAT NOT NULL, radio FLOAT NOT NULL, newspaper FLOAT NOT NULL,sales FLOAT NULL, period TEXT NULL,  PRIMARY KEY("id" AUTOINCREMENT));   ') 
 

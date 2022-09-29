@@ -50,12 +50,11 @@ Output:  Message
     ├── src 
         ── creat_db.py              # Reads CSV to SQL
         ── sample_uploadfile.csv    # Sample Upload CSV
-    ├── data                        # Contains the model and base CSV
+    ├── data                        # Contains the model SQLite db and base CSV
     ├── static                      # Contains assets / CSS Bootstrap
     ├── templates                   # Contains HTML 
     ├── uploads                     # Contains folder for saving the uploads
     └── README.md                   # README
-    └── advertising_sales.db        # DB Sqlite
     └── main_app.py                 # Main App
     
 ```

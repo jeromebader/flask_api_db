@@ -18,7 +18,7 @@ import sqlite3,csv
 
 
 def dbconn ():
-    connection = sqlite3.connect('advertising_sales.db')
+    connection = sqlite3.connect('./data/advertising_sales.db')
     cursor = connection.cursor()
     return connection, cursor
 
