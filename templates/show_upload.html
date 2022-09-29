@@ -86,6 +86,7 @@
       <div class="container-fluid py-5">
         <h1 class="display-5 fw-bold">Upload CSV</h1>
         <p> Here you can upload data for prediction to the Database</p>
+        <p><a href="https://github.com/jeromebader/flask_api_db"> For adding data by API check documentation</a></p>
         <form method="POST" enctype="multipart/form-data" action="/">
           <input class="btn btn-outline-secondary" type="file" id="myFile" name="uploaded-file" accept=".csv">
           <input class="btn btn-primary btn-md" type="submit" value="Upload file">
@@ -100,9 +101,9 @@
       <div class="col-md-6">
         <div class="h-100 p-5 text-bg-dark rounded-3">
           <h2>Show data</h2>
-          <p> Here you can see the uploaded CSV data</p>
+          <p> Here you can see the uploaded CSV data and from API calls </p>
           <form action="/show_data" target="_blank">
-            <input class="btn btn-secondary"  type="submit" value="Show CSV" />
+            <input class="btn btn-secondary"  type="submit" value="Show Data" />
         </form>
         </div>
       </div>
