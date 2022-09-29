@@ -1,24 +1,19 @@
 
 # Import of required files
-from crypt import methods
-from flask import Flask, render_template, request, session,redirect
+#from crypt import methods
 import os
 from werkzeug.utils import secure_filename
 from os.path import join, dirname, realpath
-from flask import Flask, jsonify, request, render_template, session
+from flask import Flask, jsonify, request, render_template, session, redirect
 import numpy as np
 import pandas as pd
 import pickle 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.pipeline import Pipeline
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import cross_validate
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import cross_val_predict
 from datetime import datetime
-from flask import Flask, request, jsonify
 import sqlite3,csv
 
 
@@ -161,6 +156,12 @@ def ingest():
         else:
                 data['newspaper'] = 0.0
 
+        if 'sales' in request.args:
+                data['sales'] = float(request.args['sales'])
+        else:
+                data['sales'] = 'NaN'
+
+
     else:  # JSON data received
         request_data = request.get_json()
         if request_data:
@@ -174,24 +175,37 @@ def ingest():
             else:
                 data['radio']= 0.0
 
-            if 'python' in request_data:
+            if 'newspaper' in request_data:
                 data['newspaper'] = float(request_data['newspaper'])
             else:
                 data['newspaper'] = 0.0
 
-     
+            if 'sales' in request_data:
+                data['sales'] = float(request_data['sales'])
+            else:
+                data['sales'] = 'NaN'
 
-    # Data is not blank?!
-    if data['tv'] >= 0 or data['radio'] >= 0.0 or data['newspaper'] >= 0:
+
+
+
+    # Data is not NaN / blank?!
+    if data['tv'] >= 0 or data['radio'] >= 0 or data['newspaper'] >= 0:
          con, cursor = dbconn ()
-         to_db = (data['tv'],data['radio'],data['newspaper'])
-         if cursor.execute("INSERT INTO estimators ( TV, radio, newspaper) VALUES ( ?,?,?);", (data['tv'],data['radio'],data['newspaper'],)):
-            con.commit()
-            con.close()
-            message += 'Data added'
-         else:
-            message += 'error in adding the data to DB'
-           
+         if data['sales'] != 'NaN': # With Sales $ values
+            if cursor.execute("INSERT INTO estimators ( TV, radio, newspaper, sales) VALUES ( ?,?,?,?);", (data['tv'],data['radio'],data['newspaper'],data['sales'],)):
+                con.commit()
+                con.close()
+                message += 'Data added with sales'
+            else:
+                message += 'error in adding the data to DB'
+
+         else: ## Without Sales Field
+            if cursor.execute("INSERT INTO estimators ( TV, radio, newspaper) VALUES ( ?,?,?);", (data['tv'],data['radio'],data['newspaper'],)):
+                con.commit()
+                con.close()
+                message += 'Data added only costs'
+            else:
+                message += 'error in adding the data to DB'      
 
     else:
         message += 'data arguments not complete'
@@ -228,4 +242,4 @@ def retrain():
 
 
 # RUN MAIN
-#app.run(debug = True)
+app.run(debug = True)

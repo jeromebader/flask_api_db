@@ -8,7 +8,7 @@ print (dname)
 
 con = sqlite3.connect("advertising_sales.db") # change to 'sqlite:///your_filename.db'
 cur = con.cursor()
-cur.execute('CREATE TABLE estimators (id INTEGER, TV FLOAT NOT NULL, radio FLOAT NOT NULL, newspaper FLOAT NOT NULL,sales FLOAT, period TEXT NULL,  PRIMARY KEY("id" AUTOINCREMENT));   ') 
+cur.execute('CREATE TABLE estimators (id INTEGER, TV FLOAT NOT NULL, radio FLOAT NOT NULL, newspaper FLOAT NOT NULL,sales FLOAT NULL, period TEXT NULL,  PRIMARY KEY("id" AUTOINCREMENT));   ') 
 
 
 
